@@ -8,3 +8,7 @@ I also fixed the issue of skids duplicating.
 # My Opinion
 My opinion about this source, a lot of unstable code but still usable, some bugs may still exist but I don't look for it because it just waste my time so you have to fix it by yourself (Make great effort and stop constantly depending on other person)... one more thing.... Vyte skill issues😛
 😝
+
+# Our community & what we do
+- GHX: We like to tell interesting stories about how anything done in this world is POSSIBLE, nothing is impossible.
+https://discord.gg/se5Qkf4hmu
