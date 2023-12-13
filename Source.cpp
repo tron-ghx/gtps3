@@ -9628,6 +9628,7 @@ int main(int argc, char* argv[]) {
 								if (pInfo(currentPeer)->world == pInfo(peer)->world) p.CreatePacket(currentPeer);
 							}
 						}
+						player_punch(peer, p_->plantingTree, p_->punchX, p_->punchY, p_->x, p_->y);
 						break;
 					}
 					case 7: /*Kai zaidejas ieina pro duris arba portal*/ /*2/16/2022 update: cia dar gali buti STEAM USE*/
