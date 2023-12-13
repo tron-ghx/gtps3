@@ -13,7 +13,6 @@
 #include "Player.h"
 #include "Packet.h"
 #include "Guilds.h"
-#include "upacket.h"
 #include "skStr.h"
 #include "World.h"
 #pragma comment(lib, "Ws2_32.lib")
@@ -1221,12 +1220,10 @@ int main(int argc, char* argv[]) {
 					}
 					else pInfo(peer)->all_packets++;
 				}
-				//loop_save(peer);
 				string cch = "";
 				if (message_(event.packet) == 2 or message_(event.packet) == 3) {
 					cch = text_(event.packet);
 					if (cch.size() < 5) break;
-					doLog(pInfo(peer)->tankIDName + ": " + cch);
 					if (cch == "action|getDRAnimations\n" || cch == "action|refresh_player_tribute_data\n" || cch.size() > (pInfo(peer)->lastwrenchb == 10374 ? 100000 : 1024) || not isASCII(cch)) {
 						enet_packet_destroy(event.packet);
 						continue;
@@ -1268,7 +1265,6 @@ int main(int argc, char* argv[]) {
 					if (not Server_Security.log_player.empty() && Server_Security.log_player == to_lower(pInfo(peer)->tankIDName)) {
 						cout << "LOGGING: " << pInfo(peer)->tankIDName << " | " << "DIALOG/TEXT" << "|" << cch << endl;
 					}
-					cout << "LOGGING: " << pInfo(peer)->tankIDName << " | " << "DIALOG/TEXT" << "|" << cch << endl;
 					/*
 					if (server_port == 2) {
 						string log = pInfo(peer)->world + " | " + cch;
@@ -10221,27 +10217,7 @@ int main(int argc, char* argv[]) {
 												world_->drop_new.erase(world_->drop_new.begin() + i_);
 												break;
 											}*/
-											if (world_->drop_new[i_][0] == 1626) {
-												if (pInfo(peer)->Carried_A_Flag) break;
-												gameupdatepacket p;
-												p.m_type = PACKET_BATTLE_EVENT; p.m_net_id = pInfo(peer)->netID; p.m_int_x = 5; p.m_int_y = world_->drop_new[i_][5];
-												for (ENetPeer* currentPeer = server->peers; currentPeer < &server->peers[server->peerCount]; ++currentPeer) {
-													if (currentPeer->state != ENET_PEER_STATE_CONNECTED || currentPeer->data == NULL) continue;
-													if (pInfo(currentPeer)->world == pInfo(peer)->world) send_packet(currentPeer, 4, &p, sizeof(gameupdatepacket), ENET_PACKET_FLAG_RELIABLE);
-												}
-												pInfo(peer)->Game_Flag = world_->drop_new[i_][5]; pInfo(peer)->Flag_X = world_->drop_new[i_][6], pInfo(peer)->Flag_Y = world_->drop_new[i_][4], pInfo(peer)->Carried_A_Flag = true;
-												{
-													gameupdatepacket p;
-													p.m_type = PACKET_ITEM_CHANGE_OBJECT;
-													p.m_int_data = world_->drop_new[i_][2]; p.m_net_id = -2; p.m_item = -1;
-													for (ENetPeer* currentPeer = server->peers; currentPeer < &server->peers[server->peerCount]; ++currentPeer) {
-														if (currentPeer->state != ENET_PEER_STATE_CONNECTED or currentPeer->data == NULL) continue;
-														if (pInfo(currentPeer)->world == world_->name) send_packet(currentPeer, 4, &p, sizeof(gameupdatepacket), ENET_PACKET_FLAG_RELIABLE);
-													}
-												}
-												world_->drop_new.erase(world_->drop_new.begin() + i_);
-												break;
-											}
+											
 											else if ((world_->drop_new[i_][0] != 4490 && modify_inventory(peer, world_->drop_new[i_][0], c_, false, true) == 0) or world_->drop_new[i_][0] == 112 or world_->drop_new[i_][0] == 4490) {
 												PlayerMoving data_{};
 												 data_.packetType = 14, data_.netID = (world_->drop_new[i_][0] == 4490 ? -2 : pInfo(peer)->netID), data_.plantingTree = world_->drop_new[i_][2];

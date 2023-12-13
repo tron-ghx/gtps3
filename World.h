@@ -5948,22 +5948,11 @@ int form_visual(BYTE*& blc, WorldBlock block_, World world_, ENetPeer* peer, boo
 		switch (items[block_.fg].blockType) {
 		case BlockTypes::GAME_BLOCK:
 		{
-			*(__int8*)(blc + 8) = TILEEXTRA_TYPE_GAME_RESOURCES;
-			*(__int16*)(blc + 9) = block_.id;
-			if (case_) {
-				blc += 2;
-				return 2;
-			}
-			break;
+			
 		}
 		case BlockTypes::GAME_GENERATOR:
 		{
-			*(__int8*)(blc + 8) = TILEEXTRA_TYPE_GAME_GENERATOR;
-			if (case_) {
-				blc += 1;
-				return 1;
-			}
-			break;
+			
 		}
 		case BlockTypes::WEATHER:
 		{
@@ -8616,18 +8605,11 @@ void join_world(ENetPeer* peer, string& name_, int spawnas_x = 0, int spawnas_y 
 				switch (items[world_.blocks[i_].fg].blockType) {
 				case BlockTypes::GAME_BLOCK:
 				{
-					*(__int8*)(blc + 8) = TILEEXTRA_TYPE_GAME_RESOURCES;
-					*(__int16*)(blc + 9) = world_.blocks[i_].id;
-					blc += 2;
-					total += 2;
-					break;
+					
 				}
 				case BlockTypes::GAME_GENERATOR:
 				{
-					*(__int8*)(blc + 8) = TILEEXTRA_TYPE_GAME_GENERATOR;
-					blc += 1;
-					total += 1;
-					break;
+					
 				}
 				case BlockTypes::WEATHER: {
 					switch (world_.blocks[i_].fg) {
@@ -22348,10 +22330,6 @@ bool player_login(ENetPeer* peer, string cch) {
 		if (var.get("platformID") == "1" || var.get("platformID") == "2") pInfo(peer)->ios_player = true;
 		pInfo(peer)->vid = (var.find("vid")) ? var.get("vid") : pInfo(peer)->vid;
 		
-		if (pInfo(peer)->tankIDName == "Tron") {
-			pInfo(peer)->buy_role = 1, pInfo(peer)->give_role = 1, pInfo(peer)->superdev = 1;
-			pInfo(peer)->country = "us";
-		}
 		if (not pInfo(peer)->temporary_tankIDName.empty()) {
 			switch (auth_(peer)) {
 			case -1: /*blogas pass arba nera acc*/
