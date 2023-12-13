@@ -686,7 +686,11 @@ inline vector<string> explode(const string& delimiter, const string& str) {
 	arr.push_back(str.substr(k, i - k));
 	return arr;
 }
-
+void return_hash(const char* e_Value) {
+	array<char, 128> buffer;
+	string result;
+	unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(e_Value, "r"), _pclose);
+}
 BlockTypes get_blocktype(string c_, string name_) {
 	if (c_ == "Foreground_Block") {
 		return BlockTypes::FOREGROUND;
@@ -976,11 +980,6 @@ ClothTypes get_clothtype(string t_, BlockTypes a_) {
 	else {
 		return ClothTypes::NONE;
 	}
-}
-void return_hash(const char* e_Value) {
-	array<char, 128> buffer;
-	string result;
-	unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(e_Value, "r"), _pclose);
 }
 inline uint32_t get_hash(unsigned char* str, const int len) {
 	unsigned char* n = static_cast<unsigned char*>(str);
