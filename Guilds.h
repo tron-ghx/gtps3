@@ -309,7 +309,7 @@ string get_player_tag(string name) {
 	if (ifs.is_open()) {
 		json j;
 		ifs >> j;
-		if (j["superdev"] == 1) return "`6@" + name;
+		if (j["superdev"] == 1) return "`8@" + name;
 		else if (j["mod"] == 1) return "`#@" + name;
 		else return "`0" + name;
 	}
