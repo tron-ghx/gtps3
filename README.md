@@ -12,3 +12,7 @@ My opinion about this source, a lot of unstable code but still usable, some bugs
 # Our community & what we do
 - GHX: We like to tell interesting stories about how anything done in this world is POSSIBLE, nothing is impossible.
 https://discord.gg/se5Qkf4hmu
+
+## Credits
+- [nlohmann/json](https://github.com/nlohmann/json): C++ library for manipulating JSON data with a "modern C++" design.
+- [ENet Networking Library](https://github.com/lsalzman/enet): Networking library for game development with support for peer-to-peer communication and server-based connection management.
