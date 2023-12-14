@@ -10107,17 +10107,6 @@ int main(int argc, char* argv[]) {
 					{
 						if (p_->x < 0 || p_->y < 0) break;
 						if (pInfo(peer)->ghost or pInfo(peer)->invis) break;
-						if (pInfo(peer)->onetimecollect == false) {
-							if (pInfo(peer)->collect_allowed == false) break;
-							if (pInfo(peer)->collect_total >= 50) {
-								pInfo(peer)->collect_allowed = false;
-								pInfo(peer)->collect_total = 0;
-							}
-							else pInfo(peer)->collect_total++;
-
-						}
-						pInfo(peer)->onetimecollect = false;
-
 						if (pInfo(peer)->level < 2 && pInfo(peer)->mod == 0) {
 							int currentX = pInfo(peer)->x / 32, currentY = pInfo(peer)->y / 32, targetX = p_->x / 32, targetY = p_->y / 32;
 							if (abs(targetX - pInfo(peer)->x / 32) >= 9 || abs(targetY - pInfo(peer)->y / 32) >= 9)
@@ -10137,8 +10126,6 @@ int main(int argc, char* argv[]) {
 							}
 						}
 						
-						if (p_->x / 32 < (pInfo(peer)->x / 32 - 2) || p_->y / 32 < (pInfo(peer)->y / 32 - 2) ||
-							p_->x / 32 > (pInfo(peer)->x / 32 + 2) || p_->y / 32 > (pInfo(peer)->y / 32 + 2)) break;
 						bool displaybox = true;
 						string name_ = pInfo(peer)->world;
 						vector<World>::iterator p = find_if(worlds.begin(), worlds.end(), [name_](const World& a) { return a.name == name_; });
