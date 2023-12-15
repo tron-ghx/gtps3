@@ -6,6 +6,7 @@ Oh one more secret, ***😝he uses fake online on every server including GTPS3**
 I also fixed the issue of skids duplicating.
 
 [GTPS3 Admin Panel](https://github.com/tron-ghx/gtps3-admin-panel)
+**selling leaked source is a human failure**
 # My Opinion
 My opinion about this source, a lot of unstable code but still usable, some bugs may still exist but I don't look for it because it just waste my time so you have to fix it by yourself (Make great effort and stop constantly depending on other person)... one more thing.... Vyte skill issues😛
 😝
